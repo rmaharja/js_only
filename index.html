@@ -20,6 +20,25 @@
   <div id="display-master"></div>
   <div id="display-local-pokemon"></div>
   <div id="display-api-pokemon"></div>
+  <br>
+  <form action="" id="user-posts">
+    <div>
+      <input type="text" id="user-pokemon-name" placeholder="Enter Pokemon Name">
+    </div>
+    <div>
+      <input type="text" id="user-pokemon-attack" placeholder="Enter Pokemon Attack">
+    </div>
+    <div>
+      <input type="text" id="user-pokemon-defense" placeholder="Enter Pokemon Defense">
+    </div>
+    <div>
+      <input type="text" id="user-pokemon-type" placeholder="Enter Pokemon Type">
+    </div>
+  
+    <div>
+      <input type="submit" id="submit" value = "submit">
+    </div>
+  </form>
 
 
 </body>
@@ -32,6 +51,20 @@
   document.getElementById("fetchMaster").addEventListener("click", fetchMaster);
   document.getElementById("localPokemon").addEventListener("click", localPokemon);
   document.getElementById("apiPokemon").addEventListener("click", apiPokemon);
+  document.getElementById("user-posts").addEventListener("submit", userPost);
+
+  function userPost(event){
+    event.preventDefault();
+    console.log("Going into UserPost Function");
+
+    let userName = document.getElementById("user-pokemon-name").value
+    let userAttack = document.getElementById("user-pokemon-attack").value
+    let userDefense = document.getElementById("user-pokemon-defense").value
+    let userType = document.getElementById("user-pokemon-type").value
+    
+
+
+  };
 
   function apiPokemon(){
     console.log("Going into apiPokemon function");
@@ -43,19 +76,22 @@
     .then((res) => res.json())
     .then((res1) => {
       console.log("Results", res1);
-      let postHeader = `<h3> Posts: </h3>`
+      let allPosts = `<h3> All Posts: </h3>`
       res1.forEach(function (postData){
-        postHeader += 
+        allPosts += 
         `
         <div>
-          <h4> ${postData.title} </h4>
+          <strong><h4> ${postData.title} </h4></strong>
           <p> ${postData.body}</p>
         </div>
         `
       });
+      document.getElementById("display-api-pokemon").innerHTML = allPosts;
     })
   };//end of apiPokemonApiPokemon 
 
+
+//Check out these cool functions:
   function localPokemon() {
     let urlLocalPokemon = "./pokemon.json"
 
@@ -68,7 +104,7 @@
         `
         <div id = pokemon-header>
         <ul>
-          <li> Pokemon: ${pokemonData.Pokemon }</li>
+          <li> Pokemon: ${pokemonData.Pokemon}</li>
           <li> Attack: ${pokemonData.attack} </li>
           <li> Defense: ${pokemonData.defense} </li>
           <li> Type: ${pokemonData.type} </li>
