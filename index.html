@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Fetch App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+</head>
+
+<body>
+
+  <button id="fetchMaster"> Fetch Master</button>
+  <br>
+
+  <button id="fetchPokemon"> Fetch Pokemon</button>
+  <br>
+  <div id="display-master"></div>
+  <div id="display-pokemon"></div>
+
+
+</body>
+
+<script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"></script>
+<script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<script src="main.js"></script>
+<script>
+
+  document.getElementById("fetchMaster").addEventListener("click", fetchMaster);
+  document.getElementById("fetchPokemon").addEventListener("click", fetchPokemon);
+
+
+  function fetchPokemon() {
+    let urlPokemon = "./pokemon.json"
+
+    fetch((urlPokemon))
+      .then((res) => res.json())
+      .then((res1) => {
+        let pokemonHeader = `<h3> Pokemon </h3>`;
+        res1.forEach(function (pokemonData) {
+          pokemonHeader +=
+        `
+        <ul>
+          <li> Pokemon: ${pokemonData.Pokemon }</li>
+          <li> Attack: ${pokemonData.attack} </li>
+          <li> Defense: ${pokemonData.defense} </li>
+          <li> Type: ${pokemonData.type} </li>
+        </ul>
+        `
+        });
+        document.getElementById("display-pokemon").innerHTML = pokemonHeader;
+      })
+  };
+
+  function fetchMaster() {
+    let urlMaster = "./master.txt"
+
+    //w/o arrow function:
+    // fetch(urlMaster)
+    // .then(function(res){
+    //   return res.text();
+    // })
+    // .then(function(res1){
+    // document.getElementById("display-master").innerHTML = res1;
+    // })
+
+    //using arrow functions:
+    fetch((urlMaster))
+      .then((res) => res.text())
+      .then((res1) => {
+        document.getElementById("display-master").innerHTML = res1;
+      })
+      .catch((err) => console.log(err))
+  };
+</script>
+
+</html>

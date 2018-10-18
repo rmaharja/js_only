@@ -1,0 +1,20 @@
+[
+  {
+    "pokemon": "Charmander",
+    "attack": 5,
+    "defense": 4,
+    "type": "fire"
+  },
+  {
+    "pokemon": "Squirtle",
+    "attack": 4,
+    "defense": 5,
+    "type": "water"
+  },
+  {
+    "pokemon": "Bulbasaur",
+    "attack": 4,
+    "defense": 4,
+    "type": "grass"
+  }
+]
