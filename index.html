@@ -13,11 +13,13 @@
 
   <button id="fetchMaster"> Fetch Master</button>
   <br>
-
-  <button id="fetchPokemon"> Fetch Pokemon</button>
+  <button id="localPokemon"> Fetch Local Pokemon</button>
+  <br>
+  <button id="apiPokemon"> Fetch Api Pokemon</button>
   <br>
   <div id="display-master"></div>
-  <div id="display-pokemon"></div>
+  <div id="display-local-pokemon"></div>
+  <div id="display-api-pokemon"></div>
 
 
 </body>
@@ -26,30 +28,55 @@
 <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 <script src="main.js"></script>
 <script>
-
+  //listeners
   document.getElementById("fetchMaster").addEventListener("click", fetchMaster);
-  document.getElementById("fetchPokemon").addEventListener("click", fetchPokemon);
+  document.getElementById("localPokemon").addEventListener("click", localPokemon);
+  document.getElementById("apiPokemon").addEventListener("click", apiPokemon);
 
+  function apiPokemon(){
+    console.log("Going into apiPokemon function");
+    let opponent = "25"
+    // let urlApiPokemon = `https://cors-anywhere.herokuapp.com/http://pokeapi.co/api/v2/pokemon/${opponent}/`
+    let urlApiPokemon = "https://jsonplaceholder.typicode.com/posts"
 
-  function fetchPokemon() {
-    let urlPokemon = "./pokemon.json"
+    fetch((urlApiPokemon))
+    .then((res) => res.json())
+    .then((res1) => {
+      console.log("Results", res1);
+      let postHeader = `<h3> Posts: </h3>`
+      res1.forEach(function (postData){
+        postHeader += 
+        `
+        <div>
+          <h4> ${postData.title} </h4>
+          <p> ${postData.body}</p>
+        </div>
+        `
+      });
+    })
+  };//end of apiPokemonApiPokemon 
 
-    fetch((urlPokemon))
+  function localPokemon() {
+    let urlLocalPokemon = "./pokemon.json"
+
+    fetch((urlLocalPokemon))
       .then((res) => res.json())
       .then((res1) => {
-        let pokemonHeader = `<h3> Pokemon </h3>`;
+        let pokemonHeader = `<h3> Local Pokemon </h3>`;
         res1.forEach(function (pokemonData) {
           pokemonHeader +=
         `
+        <div id = pokemon-header>
         <ul>
           <li> Pokemon: ${pokemonData.Pokemon }</li>
           <li> Attack: ${pokemonData.attack} </li>
           <li> Defense: ${pokemonData.defense} </li>
           <li> Type: ${pokemonData.type} </li>
         </ul>
+        </div>
         `
         });
-        document.getElementById("display-pokemon").innerHTML = pokemonHeader;
+        document.getElementById("display-local-pokemon").innerHTML = pokemonHeader;
       })
   };
 
