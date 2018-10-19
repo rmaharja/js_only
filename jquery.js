@@ -20,7 +20,7 @@ function userPost(event) {
   let postTitle = document.getElementById("post-title").value;
   let postBody = document.getElementById("post-body").value;
 
-  fetch(urlPost, {
+  fetch((urlPost), {
       method: "POST",
       headers: {
         "Accept": "application/json, text/plain",
