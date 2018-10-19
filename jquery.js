@@ -2,9 +2,10 @@ document.addEventListener("DOMContentLoaded", function(){
   console.log("Document is Ready Yo")
 
 //listeners
-document.getElementById("fetch-local-text").addEventListener("click", fetchLocalText);
-document.getElementById("fetch-local-json").addEventListener("click", fetchLocalJson);
-document.getElementById("fetch-api").addEventListener("click", fetchApi);
+$("#fetch-local-text").on("click", fetchLocalText);
+$("#fetch-local-json").on("click", fetchLocalJson);
+$("#fetch-api").on("click", fetchApi);
+// $("user-posts").submit(userPost);
 document.getElementById("user-posts").addEventListener("submit", userPost);
 
 //Check out these cool functions:
@@ -37,24 +38,28 @@ function userPost(event) {
 
 function fetchApi() {
   console.log("Going into fetch-api function");
-  let url = "https://jsonplaceholder.typicode.com/posts"
+  let urlApi = "https://jsonplaceholder.typicode.com/posts"
 
-  fetch((url))
-    .then((res) => res.json())
-    .then((res1) => {
-      console.log("Results", res1);
-      let allPosts = `<h3> All Posts: </h3>`
-      res1.forEach(function (postData) {
-        allPosts +=
-          `
-        <div>
-          <strong><h4> ${postData.title} </h4></strong>
-          <p> ${postData.body}</p>
-        </div>
-        `
-      });
-      document.getElementById("display-api").innerHTML = allPosts;
-    })
+ $.ajax({
+   url: urlApi,
+   metho: "GET"
+ })
+ .then((res) => {
+   console.log("API results", res)
+   let allPosts = `<h3> All Posts: </h3>`
+   res.forEach(function (postData) {
+     allPosts +=
+       `
+     <div>
+       <strong><h4> ${postData.title} </h4></strong>
+       <p> ${postData.body}</p>
+     </div>
+     `
+   });
+   $("#display-api").append(allPosts);
+
+});
+
 }; //end of fetch-apifetch-api 
 
 
@@ -70,7 +75,7 @@ function fetchLocalJson() {
           `
         <div id = pokemon-header>
         <ul>
-          <li> Pokemon: ${pokemonData.Pokemon}</li>
+          <li> Pokemon: ${pokemonData.pokemon}</li>
           <li> Attack: ${pokemonData.attack} </li>
           <li> Defense: ${pokemonData.defense} </li>
           <li> Type: ${pokemonData.type} </li>

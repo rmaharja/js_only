@@ -70,7 +70,7 @@ function fetchLocalJson() {
           `
         <div id = pokemon-header>
         <ul>
-          <li> Pokemon: ${pokemonData.Pokemon}</li>
+          <li> Pokemon: ${pokemonData.pokemon}</li>
           <li> Attack: ${pokemonData.attack} </li>
           <li> Defense: ${pokemonData.defense} </li>
           <li> Type: ${pokemonData.type} </li>
