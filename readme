@@ -1,0 +1,138 @@
+"$" = JQuery
+no "$" = JScript Vanilla
+
+===============================================
+Loading Document when ready:
+
+$(document).ready(function(){
+  //Add Script here
+};
+============
+document.addEventListener("DOMContentLoaded", function(){
+  //Add Script here
+});
+===============================================
+
+Selecting an element:
+let element = $(".class");
+============
+let element = document.querySelector(".class");
+
+===============================================
+HTTP Requests(See JS files for examples):
+
+let url = "https://sampleurl.com"
+$.ajax(url, {
+  //optional parameters
+})
+.then((res) => {
+  //do stuff with data
+})
+============
+fetch(url, {
+  //optional parameters in hear (methods, headers...) 
+})
+.then((res) => res.json())
+.then((data) => {
+  // Do stuff with data here
+})
+
+===============================================
+Removing an element:
+
+$element.remove();
+============
+element.remove();
+===============================================
+Appending an Element (similar to Prepend):
+
+$element.append($anotherElement);
+elem.appendChild(anotherElement);
+
+===============================================
+FadeIn (similar to other Fade methods):
+
+$elem.fadeIn(speed-in-ms, callback);
+============
+[(CSS:
+  .class{
+    display: none;
+    opacity: 0;
+    transition: 0.8s;
+  })
+  (JS:
+    elem.style.display = "block";
+    requestAnimationFrame() => elem.style.opacity = 1)]
+
+===============================================
+Animation:
+
+$elem.animate ({
+  width: "80%:,
+  opacity: 0.5,
+  marginLeft: "0.6in",
+  fontSize: "3em",
+  borderWidth: "10px"
+}, 3000);
+============
+element.animate([
+  {//initial state:
+    transform: "translateY(-500px) scaleY(2.5) scaleX(0.2)",
+    transformOrigin: "50% 0",
+    filter: "blur(40px),
+    opacity: 0
+  },
+  {//end state:
+    transform: "translateY(0) scaleY(1) scaleX(0.2)",
+    transformOrigin: "50% 0",
+    filter: "blur(40px),
+    opacity: 0
+  }
+  //length of animation:
+], 3000);
+
+===============================================
+Setting Style (CSS):
+
+$element.css({ color: "red:});
+============
+element.style.color = "red";
+===============================================
+
+Other useful Methods:
+
+$.trim(string)
+============
+string.trim()
+
+$.inArray (someItem, array);
+============
+array.indexOf(someItem) > -1;
+or 
+arra.includes(someItem)
+
+$element.html(string)
+============
+element.innerHTML = string
+
+$element.remove();
+============
+element.parentNode.removeChile(element);
+
+#element.empty();
+============
+element.innerHTML
+
+
+
+
+
+
+
+
+
+
+
+
+
+

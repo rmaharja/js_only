@@ -1,5 +1,5 @@
-document.addEventListener("DOMContentLoaded", function(){
-  console.log("Document is Ready Yo")
+$(document).ready(function(){
+  console.log("Document is Ready Yo");
 
 //listeners
 $("#fetch-local-text").on("click", fetchLocalText);
@@ -18,22 +18,24 @@ function userPost(event) {
   let urlPost = "https://jsonplaceholder.typicode.com/posts"
 
   //capturing user input values from DOM
-  let postTitle = document.getElementById("post-title").value;
-  let postBody = document.getElementById("post-body").value;
+  let postTitle = $("#post-title").val();
+  let postBody = $("#post-body").val();
 
-  fetch((urlPost), {
-      method: "POST",
-      headers: {
-        "Accept": "application/json, text/plain",
-        "Content-type": "application/json"
-      },
-      body: JSON.stringify({
-        postTitle: postTitle,
-        postBody: postBody
-      })
-    }) //end of fetch
-    .then((res) => res.json())
-    .then((res1) => console.log(res1))
+  $.ajax({
+    url: urlPost,
+    type: "POST",
+    data: JSON.stringify({
+      postTitle: postTitle,
+      postBody: postBody
+    }),
+    contentType: "application/json",
+    dataType: "json"
+  })
+  .then((res) => {
+    console.log(res)
+  })
+ 
+
 }; //end of function userPost
 
 function fetchApi() {
@@ -42,7 +44,7 @@ function fetchApi() {
 
  $.ajax({
    url: urlApi,
-   metho: "GET"
+  //  method: "GET" //If no method reference, assumes a GET
  })
  .then((res) => {
    console.log("API results", res)
@@ -56,7 +58,7 @@ function fetchApi() {
      </div>
      `
    });
-   $("#display-api").append(allPosts);
+   $("#display-api").empty().append(allPosts);
 
 });
 
@@ -64,38 +66,41 @@ function fetchApi() {
 
 
 function fetchLocalJson() {
-  let url = "./pokemon.json"
-
-  fetch((url))
-    .then((res) => res.json())
-    .then((res1) => {
-      let pokemonHeader = `<h3> Local Pokemon </h3>`;
-      res1.forEach(function (pokemonData) {
-        pokemonHeader +=
-          `
-        <div id = pokemon-header>
-        <ul>
-          <li> Pokemon: ${pokemonData.pokemon}</li>
-          <li> Attack: ${pokemonData.attack} </li>
-          <li> Defense: ${pokemonData.defense} </li>
-          <li> Type: ${pokemonData.type} </li>
-        </ul>
-        </div>
+  let urlJson = "./pokemon.json"
+  $.ajax((urlJson))
+  .then((res) => {
+    console.log("Local JSON results", res);
+    let pokemonHeader = `<h3> Local Pokemon </h3>`;
+    res.forEach(function (pokemonData) {
+      pokemonHeader +=
         `
-      });
-      document.getElementById("display-local-json").innerHTML = pokemonHeader;
+      <div id = pokemon-header>
+      <ul>
+        <li> Pokemon: ${pokemonData.pokemon}</li>
+        <li> Attack: ${pokemonData.attack} </li>
+        <li> Defense: ${pokemonData.defense} </li>
+        <li> Type: ${pokemonData.type} </li>
+      </ul>
+      </div>
+      `
     })
-};
+    .catch((err) => console.log(err));
+
+    $("#display-local-json").empty().append(pokemonHeader);
+
+  });
+  
+};//end of fetchLocalJson
 
 function fetchLocalText() {
-  let url = "./master.txt"
+  let urlText = "./master.txt"
 
-  fetch((url))
-  .then((res) => res.text())
-  .then((res1) => {
-    document.getElementById("display-local-text").innerHTML = res1;
-  })
-  .catch((err) => console.log(err))
+$.ajax((urlText))
+.then((res) => {
+  console.log("Display local text", res);
+  $("#display-local-text").empty().append(res);
+})
+.catch((err) => console.log(err));
   //w/o arrow function:
   // fetch(urlMaster)
   // .then(function(res){
@@ -105,8 +110,7 @@ function fetchLocalText() {
   // document.getElementById("display-master").innerHTML = res1;
   // })
 
-  //using arrow functions:
 
 };//end of fetchLocalText
 
-})//end of document ready
+});//end of document ready

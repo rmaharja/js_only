@@ -33,6 +33,8 @@ function userPost(event) {
     }) //end of fetch
     .then((res) => res.json())
     .then((res1) => console.log(res1))
+    .catch((err) => console.log(err))
+
 }; //end of function userPost
 
 function fetchApi() {
@@ -55,6 +57,8 @@ function fetchApi() {
       });
       document.getElementById("display-api").innerHTML = allPosts;
     })
+    .catch((err) => console.log(err))
+
 }; //end of fetch-apifetch-api 
 
 
@@ -80,7 +84,8 @@ function fetchLocalJson() {
       });
       document.getElementById("display-local-json").innerHTML = pokemonHeader;
     })
-};
+    .catch((err) => console.log(err))
+};//end of fetchLocalJson
 
 function fetchLocalText() {
   let url = "./master.txt"
@@ -90,7 +95,7 @@ function fetchLocalText() {
   .then((res1) => {
     document.getElementById("display-local-text").innerHTML = res1;
   })
-  .catch((err) => console.log(err))
+  .catch((err) => console.log(err));
   //w/o arrow function:
   // fetch(urlMaster)
   // .then(function(res){
@@ -100,7 +105,6 @@ function fetchLocalText() {
   // document.getElementById("display-master").innerHTML = res1;
   // })
 
-  //using arrow functions:
 
 };//end of fetchLocalText
 
