@@ -84,7 +84,6 @@ function fetchLocalJson() {
       });
       document.getElementById("display-local-json").innerHTML = pokemonHeader;
     })
-    .catch((err) => console.log(err))
 };//end of fetchLocalJson
 
 function fetchLocalText() {

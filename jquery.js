@@ -84,7 +84,6 @@ function fetchLocalJson() {
       </div>
       `
     })
-    .catch((err) => console.log(err));
 
     $("#display-local-json").empty().append(pokemonHeader);
 
