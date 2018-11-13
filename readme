@@ -1,7 +1,5 @@
 ## A quick look at Vanilla vs. jquery. <br />
-<pre>
-While jQuery makes it easier to use some of the Vanilla methods, it can slow down the app significantly when a large scale application is run using jQuery.  This is where using Vanilla comes in.  This small project demonstrates that Vanilla methods are in fact a lot faster than jQuery; it demonstrates that a lot of the Vanilla methods (especially ES6) has caught up with jQuery.  Therefore, the advantages of using Vanilla is starting to outweigh using jQuery.  Even large companies like Facebook are going away from jQuery as Facebook has created (and adopted) React Framework that makes jQuery a thing of the past.
-</pre>
+
 
 "$" = JQuery
 no "$" = JScript Vanilla
