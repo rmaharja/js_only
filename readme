@@ -1,5 +1,6 @@
 # A quick look at Vanilla vs. jquery.
 ## Clone the repo and install the dependencies to see different ways of making requests using Vanilla and jQuery!
+### See below for a quick overviews of the differences (and similarities of jQuery and Vanilla methods.
 
 
 "$" = JQuery
