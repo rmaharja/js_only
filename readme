@@ -2,6 +2,7 @@
 ## Clone the repo and install the dependencies to see different ways of making requests using Vanilla and jQuery!
 ### See below for a quick overviews of the differences (and similarities of jQuery and Vanilla methods.
 
+**Clone Repo, install dependencies, and run locally to check out the difference btwn jQuery and Vanilla!
 
 "$" = JQuery
 no "$" = JScript Vanilla
